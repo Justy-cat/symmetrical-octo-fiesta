@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ash</title>
+<style>
+body {
+  margin: 0;
+  background: #0f0b0a;
+  color: #f5f2f0;
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ember particles */
+#embers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: transparent;
+}
+
+.ember {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 120, 60, 0.8);
+  border-radius: 50%;
+  animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  80% { opacity: 0.6; }
+  100% { transform: translateY(-800px) scale(0.5); opacity: 0; }
+}
+
+/* Text container */
+.story {
+  padding: 60px max(10%, 100px);
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Shaking animations */
+@keyframes shake-light {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-0.5px, 0.5px); }
+  40% { transform: translate(0.5px, -0.5px); }
+  60% { transform: translate(-0.5px, 0.5px); }
+  80% { transform: translate(0.5px, -0.5px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes shake-strong {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 2px) rotate(-0.5deg); }
+  40% { transform: translate(2px, -2px) rotate(0.5deg); }
+  60% { transform: translate(-2px, 2px) rotate(-0.5deg); }
+  80% { transform: translate(2px, -2px) rotate(0.5deg); }
+  100% { transform: translate(0, 0); }
+}
+
+.shake-light {
+  display: inline-block;
+  animation: shake-light 0.5s infinite;
+}
+
+.shake-strong {
+  display: inline-block;
+  animation: shake-strong 0.3s infinite;
+}
+
+/* Navigation button */
+.nav-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 16px;
+  background: rgba(40, 0, 0, 0.6);
+  color: #f5f2f0;
+  text-decoration: none;
+  font-family: sans-serif;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.nav-btn:hover {
+  background: rgba(80, 0, 0, 0.8);
+}
+</style>
+</head>
+<body>
+
+<div id="embers"></div>
+
+<div class="story">
+<p>The village burned quietly at first, the kind of quiet that comes from desperation, not peace. Flames crawled up the wooden beams of homes while rebels fought tooth and nail in the snow-choked streets. The Empire’s soldiers were losing—slowly, but they were losing. Each clash of steel, each shout of defiance chipped away at their lines.</p>
+
+<p><span class="shake-light">It almost felt like victory.</span></p>
+
+<p>Rebel leader Maren raised her sword, rallying those left standing. “Push them back!” she cried. “Tonight we hold the village!”</p>
+
+<p>And for a heartbeat, the Empire faltered. The rebels tasted hope—thin, fragile, intoxicating.</p>
+
+<p>Then the air changed.</p>
+
+<p>It started as a weight. A pressure that slid into lungs and sat heavy there, like the moment before a scream you can’t release. Soldiers on both sides hesitated. The snow felt sharper underfoot. Breath came shorter. Even the flames seemed to burn quieter.</p>
+
+<p>A figure walked into the village.</p>
+
+<p>No one saw where they came from. One moment there was only smoke and the ringing of swords, the next <span class="shake-light">they was simply there</span>—stepping over bodies with an easy gait, as though they were strolling through a garden.</p>
+
+<p>They didn’t need to raise voice. They didn’t even need to look at anyone. Their presence said enough.</p>
+
+<p>When they smiled, <span class="shake-light">something in the air bent</span>. The sound of fire became distant, muffled, like it was sinking underwater. Rebels who had been shouting found their throats dry.</p>
+
+<p class="shake-strong">The first man to charge them didn’t make it halfway before a knife blurred through the smoke and buried itself in his chest.</p>
+
+<p>No arc, no wasted motion—just a flick of their wrist, as casual as brushing dust off coat.</p>
+
+<p>They hummed as they walked, low and tuneless. Their hands glowed faintly, heat warping the air. Another soldier swung at them—they tilted head, almost curious, and a thin line of fire slid across the man’s throat. The scream was swallowed by the quiet.</p>
+
+<p>The rebels kept fighting, because there was nothing else to do. But every blade that neared them slowed, every shout seemed to die before it reached their ears. They wasn’t fast, but they didn’t need to be. Each step was measured, each motion deliberate. They burned and cut and crushed with the same calm care a painter uses to mix colors.</p>
+
+<p>Fear came slow, then all at once. The Empire’s surviving soldiers stopped struggling and simply stepped back, watching. Even they didn’t speak. No one wanted their attention.</p>
+
+<p>They paused only when the last few rebels were cornered near the half-collapsed hall. They looked at them—not like a man looks at enemies, but like a collector looks at curiosities.</p>
+
+<p>“You almost won,” they said softly, as if the thought amused them. They tilted head, listening to something no one else could hear, their grin sharp and bright. “Almost.”</p>
+
+<p class="shake-strong">The last defenders screamed and rushed them. It didn’t matter. Their bodies were soft and fragile; their anger burned out against them like sparks on ice. They cut through them with knives and flame until only one remained—a young rebel, trembling, blood on her hands, the only sound her own ragged breath.</p>
+
+<p>They crouched to her level, tilting their face toward hers. She couldn’t see their eyes, but she felt them.</p>
+
+<p>“Run,” they whispered, voice soft as falling snow.</p>
+
+<p>She ran.</p>
+
+<p>They straightened, looking around at the still-burning ruins. Their humming returned, quiet and satisfied, and they raised hand lazily. Fire curled around their fingers, almost playful, then leapt to the remaining buildings. The village groaned as its last beams gave way.</p>
+
+<p>They didn’t stay to watch it all fall. They didn’t need to. The silence behind them told enough.</p>
+
+<p><span class="shake-strong">There was no battle anymore. There was only Aster, and the ash.</span></p>
+</div>
+
+<a href="page1.html" class="nav-btn">← Previous</a>
+
+<script>
+// Generate embers
+const emberContainer = document.getElementById('embers');
+for (let i = 0; i < 80; i++) {
+  let ember = document.createElement('div');
+  ember.className = 'ember';
+  ember.style.left = Math.random() * 100 + '%';
+  ember.style.bottom = '-10px';
+  ember.style.animationDelay = Math.random() * 6 + 's';
+  ember.style.animationDuration = (4 + Math.random() * 4) + 's';
+  ember.style.opacity = Math.random();
+  emberContainer.appendChild(ember);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Snow Forest — Lirien & Eren</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1722;
+      --panel:#f8fafc;
+      --muted:#94a3b8;
+      --accent:#c7f0ff;
+      --glass:rgba(255,255,255,0.04);
+      --maxw:900px;
+    }
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,#07101a 0%, #0b1622 60%);
+      color:var(--panel);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;align-items:center;justify-content:center;padding:48px 20px;
+    }
+    /* Snow overlay */
+    .snow-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;}
+    .flake{position:absolute;width:6px;height:6px;background:var(--panel);border-radius:50%;opacity:0.08;animation:fall linear infinite;}
+    @keyframes fall{0%{transform:translateY(-10vh) translateX(0) scale(0.6);opacity:0.06}50%{opacity:0.12}100%{transform:translateY(120vh) translateX(40px) scale(1);opacity:0.02}}
+
+    /* Card */
+    .container{
+      position:relative;z-index:2;max-width:var(--maxw);width:100%;backdrop-filter:blur(6px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:16px;padding:40px;box-shadow:0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    header{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+    .title{font-family:'Playfair Display', serif;font-size:28px;letter-spacing:0.4px}
+    .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
+
+    /* Article typography */
+    article{line-height:1.7;color:rgba(248,250,252,0.95);font-size:16px}
+    article p{margin:0 0 18px 0}
+    .drop:first-letter{float:left;font-family:'Playfair Display',serif;font-size:64px;line-height:58px;padding-right:12px;color:var(--accent);font-weight:700}
+
+    blockquote{margin:18px 0;padding:14px 18px;border-left:3px solid rgba(199,240,255,0.18);background:linear-gradient(90deg, rgba(199,240,255,0.02), transparent);color:var(--panel);border-radius:6px}
+
+    .scene{margin:22px 0;padding:18px;border-radius:10px;background:linear-gradient(180deg, rgba(9,20,30,0.35), rgba(9,18,25,0.2));box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+
+    /* Dialogue */
+    .dialogue{margin:10px 0;padding-left:12px;border-left:3px solid rgba(255,255,255,0.03);}
+    .speaker{display:inline-block;font-weight:600;color:var(--accent);margin-right:6px;font-family:'Playfair Display',serif}
+
+    /* Small pulse indicator to hint at the stranger's light */
+    .pulse{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(199,240,255,0.18);vertical-align:middle;margin-left:10px;animation:throb 1.6s ease-in-out infinite}
+    @keyframes throb{0%{transform:scale(0.86);opacity:0.7}50%{transform:scale(1.18);opacity:1}100%{transform:scale(0.86);opacity:0.7}}
+
+    /* Footer */
+    footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:right}
+
+    /* Responsive */
+    @media (max-width:640px){.container{padding:22px}.title{font-size:20px}.drop:first-letter{font-size:48px;line-height:46px}}
+
+	/* Afterword pulse */
+    .afterword{
+      position:fixed;
+      bottom:5%;
+      left:50%;
+      transform:translateX(-50%);
+      max-width:80%;
+      font-size:14px;
+      color:rgba(255,255,255,0.02);
+      animation:pulseDark 8s ease-in-out infinite;
+      white-space:pre-line;
+      pointer-events:none;
+      z-index:1;
+    }
+    @keyframes pulseDark{
+      0%,8%,100%{color:rgba(255,255,255,0.0)}
+      5%{color:rgba(255,255,255,0.02)}
+    }
+	@media (max-width:640px){.container{padding:22px}.title{font-size:20px}.drop:first-letter{font-size:48px;line-height:46px}}
+  
+.nav-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 16px;
+  background: rgba(67, 106, 235, 0.6);
+  color: #f5f2f0;
+  text-decoration: none;
+  font-family: sans-serif;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 1px solid rgb(20, 10, 65);
+}
+.nav-btn:hover {
+  background: rgba(67, 106, 235, 0.9);
+}
+  </style>
+</head>
+<body>
+  <div class="snow-wrap" aria-hidden="true">
+    <!-- Increased snowstorm effect -->
+    <script>
+      for(let i=0;i<60;i++){
+        const flake=document.createElement('div');
+        flake.className='flake';
+        flake.style.left=Math.random()*100+'%';
+        flake.style.top=-10-Math.random()*10+'vh';
+        flake.style.animationDuration=(8+Math.random()*12)+'s';
+        flake.style.opacity=0.04+Math.random()*0.08;
+        flake.style.width=flake.style.height=(2+Math.random()*6)+'px';
+        document.currentScript.parentElement.appendChild(flake);
+      }
+    </script>
+  </div>
+
+  <main class="container" role="main">
+    <header>
+      <div>
+        <div class="title">Snow Forest</div>
+        <div class="subtitle">A short scene — Lirien &amp; Eren</div>
+      </div>
+    </header>
+    <article>
+            <section class="scene drop">
+        <p>Snow had always been quiet. Too quiet. It buried sounds, muffled screams, swallowed the world in a blanket of silence. <strong>Lirien</strong> stood at the cliff’s edge, the horizon blurred by frost and distance, their breath a pale mist that faded as quickly as it formed. They thought of the word that had defined them more than any other: <em>patience</em>.</p>
+
+        <p>Patience was what kept them still when anger burned. Patience was what kept them waiting for the promise whispered long ago: “<q>I’ll come back for you.</q>” Patience had kept them standing there far too long. But patience, they were beginning to realize, was a dangerous thing. Wait too long, and waiting turns to weight.</p>
+
+        <p>A stone shifted beneath their boots. Another crumbled. And then the ground was gone. They fell into the dark, and somewhere below, a whisper rose up like smoke: <blockquote>“How patient will you be when there’s nothing left to wait for?”</blockquote></p>
+      </section>
+
+      <section class="scene">
+        <p>The Snow Forest lay under that darkness, trees bowing under the heavy frost. <strong>Eren</strong> moved along his patrol route, his torchlight barely scratching through the mist. He knew this stillness—had walked through it so many nights that the silence almost felt like a companion. But tonight the quiet bit into him differently, sharp and uneasy.</p>
+
+        <p>That’s when he saw the faint shimmer in the snow. Not the glint of frost—something softer, almost warm. He stepped closer, boots crunching, and found a figure collapsed in the drift. A torn cloak. Skin that was almost blue-gray in the dim light.</p>
+
+        <p>And then, as he bent closer, he saw it—just once—the pale pulse under the stranger’s chest. Light-blue, faint, but steady like a heartbeat. He didn’t know what it meant. He only knew it shouldn’t be seen by anyone else. <span class="pulse" title="a faint, steady pulse"></span></p>
+      </section>
+
+      <section class="scene">
+        <p class="dialogue"><span class="speaker">Eren:</span> “Hey,” he whispered, brushing snow from the figure’s shoulders.</p>
+        <p>The stranger stirred, lids fluttering open. Calm eyes met his, strangely calm for someone half-buried in snow.</p>
+        <p class="dialogue"><span class="speaker">Stranger:</span> “...Where am I?” the voice was hoarse, but steady.</p>
+        <p class="dialogue"><span class="speaker">Eren:</span> “The Snow Forest. You’re lucky I found you.”</p>
+        <p class="dialogue"><span class="speaker">Stranger:</span> “I fell.”</p>
+
+        <p>The word hung between them, as if it explained everything—and nothing.</p>
+
+        <p>Eren checked the shadows, then shrugged off his cloak and wrapped it around the stranger. The cold could kill even a monster, he thought, and he didn’t feel like testing the theory. “Can you walk?” he asked.</p>
+
+        <p>The figure tried, their legs trembling. They collapsed back into the snow, and Eren sighed, muttered a curse under his breath, and hefted them onto his back.</p>
+      </section>
+
+      <section class="scene">
+        <p>The forest stretched endlessly, branches scraping overhead, snow crunching underfoot. Lirien’s weight pressed into his shoulders, not unbearable but heavy enough that each step felt important. That faint light still pulsed under the cloak against his back. Eren adjusted the fabric so no one else could see it.</p>
+
+        <p>He spoke, just to hear a voice besides the wind. “What were you doing out here?”</p>
+        <p>“I fell,” came the soft reply again.</p>
+        <p>“From where?”</p>
+        <p>A pause. “Above.”</p>
+
+        <p>Eren frowned but didn’t push. Snow snapped beneath his boots, the only sound between them for a long stretch. When the cloak slipped, he adjusted it, and felt the stranger shift lightly.</p>
+      </section>
+
+      <section class="scene">
+        <p>“You’re warm,” he said before he could stop himself. “Warmer than I thought you’d be.”</p>
+        <p>“And you’re… kinder than I thought you’d be,” the stranger murmured, voice almost amused, almost sad.</p>
+        <p>“You thought I’d just leave you there?”</p>
+        <p>A beat of silence. Then softly: “I’ve been left before.”</p>
+
+        <p>The words lingered in the air like mist, quiet and heavy, all the way to the outpost.</p>
+      </section>
+
+      <section class="scene">
+        <p>By the time they reached the gates, Eren’s arms ached and his breath steamed in the cold. The outpost rose out of the snow—a squat fortress of scavenged wood and iron. A guard raised her spear as they approached.</p>
+
+        <p class="dialogue"><span class="speaker">Guard:</span> “What’s that you’ve got?” she called.</p>
+        <p class="dialogue"><span class="speaker">Eren:</span> “Found them in the snow. They’re hurt.”</p>
+
+        <p>The guard looked, but Eren kept the cloak tight, hiding the faint light he had seen earlier. No one else needed to see it.</p>
+
+        <p>Inside, the common room stirred as Eren carried the stranger in. Torches crackled. Faces turned. Suspicion flickered, but no one dared reach for the cloak. The leader came forward, scar catching the light.</p>
+
+        <p class="dialogue"><span class="speaker">Leader:</span> “What’s this, Eren? Another stray?”</p>
+        <p class="dialogue"><span class="speaker">Eren:</span> “No. This one’s different.”</p>
+
+        <p>There were mutters, whispers. Questions, but no answers. In the end, they gave the stranger a bed, because they couldn’t think of anything else to do.</p>
+      </section>
+
+      <section class="scene">
+        <p>Eren stayed after the others drifted away. He brought water and a blanket, set them down, sat on the edge of the cot. The stranger’s eyes followed his movements with that same calmness that unnerved him more than hostility would have.</p>
+
+        <p>“You’re safe here,” he said quietly. “For now.”</p>
+        <p>“Safety is rare,” they murmured. “Thank you.”</p>
+
+        <p>Eren didn’t reply right away. He was used to wounded rebels, deserters, frightened villagers—but never someone like this. Someone who made silence feel like a choice instead of an accident.</p>
+
+        <p>“Get some rest,” he said finally. “We’ll talk more in the morning.”</p>
+
+        <p>They closed their eyes. The faint warmth under the cloak dimmed. And though Eren couldn’t explain why, he stayed sitting there for a long time, listening to the snow outside and the quiet breath of the one he’d found.</p>
+      </section>
+    </article>
+   <div class="afterword">
+The snow had always been quiet. Too quiet. It buried sounds, muffled screams, swallowed the world in a blanket of silence. 
+Lirien stood at the cliff’s edge, the horizon blurred by frost and distance, their breath a pale mist that faded as quickly as it formed. They watched the world below, and in that cold silence, their own thoughts began to speak louder than the wind.
+Patience.
+It had been their guiding word since the day they understood they were different. They were told, again and again, that patience was a virtue — that waiting would bring understanding, that silence would keep the peace.
+But what was patience, really?
+Is it stillness? Or simply a refusal to move?
+They thought of the humans who called monsters “abominations” and built barriers of faith and law to erase them. Lirien had waited for those barriers to crumble, for hearts to change, for mercy to grow where hatred had taken root.
+They waited too long.
+They thought of someone they had searched for — a figure blurred by time and memory. A promise whispered long ago: “I’ll come back for you.”
+They waited for that promise to be kept.
+And when the waiting turned to ache, they decided to move.
+Lirien left the mountain temples, left the whispered warnings of their kind, and stepped toward the edge of the known world. The stories said the earth split where the old wars ended — that the Underground wasn’t a place you reached, but a place you fell into, if your resolve faltered at just the wrong moment.
+They stared down into that dark, endless chasm and whispered to themselves:
+Patience is not passivity. It’s not hiding in the snow, hoping the world will be kind. Patience is enduring… even if you have to leave everything behind to do it.
+But the ground beneath their feet shifted.
+One stone slipped. Then another.
+As they tumbled into the darkness, they thought they heard a voice — distant, almost amused — carried up from the shadows below:
+“How patient will you be when there’s nothing left to wait for?”
+    </div>
+    <footer>Rendered with care • Tip: view in a dark room for best atmosphere</footer>
+  </main>
+<a href="page2.html" class="nav-btn">Next →</a>
+</body>
+</html>
